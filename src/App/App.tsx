@@ -8,8 +8,8 @@ import { RootState } from "store"
 
 import BoardPage from "pages/BoardPage"
 import WelcomePage from "pages/WelcomePage"
-import Header from "Widgetss/Header"
-import Loading from "Features/Loading"
+import Header from "widgetss/Header"
+import Loading from "features/Loading"
 
 
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'))
@@ -63,7 +63,7 @@ const App: React.FC = () => {
                         </>
                     ) : (
                         <Routes>
-                            <Route path="/" element={<RegistrationPage />} />
+                            <Route path="/" element={< RegistrationPage />} />
                         </Routes>
                     )}
                 </Suspense>

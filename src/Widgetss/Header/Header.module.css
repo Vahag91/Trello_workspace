@@ -12,6 +12,7 @@ header {
     background-color: #1D2125;
     color: white;
     padding: 10px 5%;
+    border-bottom: 1px solid #6a6d70;
 }
 
 header span {
@@ -62,6 +63,9 @@ header span {
     border-radius: 50%;
 }
 
+.navIcons li span {
+   padding: 4px;
+}
 
 input {
     padding-right: 30px;
@@ -79,13 +83,12 @@ a {
 
 
 .searchBox {
-
-    position: relative;
-}
+ position: relative;
+  }
 
 .searchIcon {
     position: absolute;
-    left: 10px;
+    right: 10px;
     top: 60%;
     transform: translateY(-50%);
     color: black;

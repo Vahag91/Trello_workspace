@@ -2,11 +2,8 @@
      display: flex;
      flex-direction: column;
      background-color: #1D2125;
-     margin: 50px 30px 0;
      max-height: 90vh;
      padding: 0 16px;
-
-     top: 40px;
      width: 256px;
  }
 
@@ -46,7 +43,9 @@
      transition: background-color 0.3s, border-radius 0.3s;
  }
 
-
+ .sideBarHead {
+    border-bottom: 2px solid #67686a;
+ }
 
  .sideBarHead ul {
      margin: 0;

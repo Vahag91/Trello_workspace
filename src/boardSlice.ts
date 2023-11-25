@@ -12,7 +12,7 @@ export interface BoardsState {
 
 const initialState: BoardsState = {
     boardList: [
-     { name: "Board", color: "green" }
+     { name: "Board", color: "#40A35B" }
     ]
 }
 

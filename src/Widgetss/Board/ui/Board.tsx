@@ -34,7 +34,7 @@ console.log(myBoard);
 
     const handleChangeInput = (): void => {
         if (newBoard) {
-            dispatch(setBoard({ name: newBoard, color: "red" }));
+            dispatch(setBoard({ name: newBoard, color: "#009AAE" }));
         }
         setNewBoard("")
         setIsBoardOpen(!isBoardOpen)
@@ -65,12 +65,12 @@ console.log(myBoard);
                             onChange={handleChangeTitle} />) : (
                             <h2> {title}</h2>)}
 
-                    <button onClick={() => { setIsTitleOpen(!isTitleOpen) }}> <FaPen /></button>
+                    <button className={styles.boadHeaderbtn} onClick={() => { setIsTitleOpen(!isTitleOpen) }}><span> <FaPen /></span> </button>
                 </div>
 
             </div>
 
-            <hr />
+           
 
             <div className={styles.boardBody}>
 
@@ -82,27 +82,28 @@ console.log(myBoard);
                             {myBoard.map((item: Boards) => {
                                 return (
                                     <li>
-                                        <button className={styles.boardBodyButton}>
+                                        <button style ={{ backgroundColor: item.color }}
+                                        className={styles.boardBodyButton}>
                                             <span>{item.name}</span>
                                         </button>
                                     </li>
                                 )
                             })}
                             {isBoardOpen ? (
-                                <div>
-                                    <input
+                                <div className={styles.inputContainer}>
+                                    <input className={styles.inputField}
                                         type="text"
                                         placeholder='Enter new board name'
                                         value={newBoard}
                                         onChange={hanldeNewBoard}
                                     />
-                                    <button onClick={handleChangeInput}>
-                                        add
+                                    <button className={styles.addButton} onClick={handleChangeInput}>
+                                        Save
                                     </button>
                                 </div>
                             ) : (
                                 <button className={styles.addBoardBtn} onClick={handleChangeInput} >
-                                    Create New Board
+                                  <span className={styles.boardAddBtn}> Create New Board</span>  
                                 </button>
                             )}
                         </ul>
