@@ -1,2 +1,3 @@
-import Board from "./ui/Board"
+import Board from "../Board/ui/Board";
+
 export default Board
