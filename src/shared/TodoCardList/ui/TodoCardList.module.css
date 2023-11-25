@@ -3,8 +3,7 @@
 }
 
 .todoCard {
-    /* display: flex;
-    justify-content: space-between; */
+ 
     max-width: 240px;
     list-style: none;
     background-color: #101204;
@@ -42,9 +41,11 @@
 .list {
     list-style: none;
     padding: 0;
+    width: 90%;
 }
 
 .list li {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     margin: 5px 0;
@@ -54,10 +55,19 @@
     border-radius: 5px;
 }
 
+.list li:hover{
+    filter: brightness(120%);
+}
 .list button {
     background-color: #22272B;
     color: #A4AFBB;
     border: none;
+    cursor: pointer;
+   padding: 5px 10px;
+}
+
+.list button:hover{
+    background-color: #373f45;
 }
 
 .addBtn {

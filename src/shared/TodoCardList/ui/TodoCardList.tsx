@@ -1,49 +1,24 @@
 
-
-
 import React, { ReactNode, useState } from "react"
 import styles from './TodoCardList.module.css'
 import { FaRegSun, FaPen, FaPlus, FaCanadianMapleLeaf } from "react-icons/fa6"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
-
-
-interface CardType {
-  id: string;
-  content: string;
-}
-
-interface ColumnType {
-  id: string;
-  title: string;
-  cards: CardType[];
-}
-
-const initialColumns: ColumnType[] = [
-  {
-    id: 'col-1',
-    title: 'To Do',
-    cards: [{ id: 'c-1', content: 'Task 1' }, { id: 'c-2', content: 'Task 2' }, { id: 'c-3', content: 'Task 3' }]
-  },
-  {
-    id: 'col-2',
-    title: 'In Progress',
-    cards: [{ id: 'c-4', content: 'Task 4' }, { id: 'c-5', content: 'Task 5' }, { id: 'c-6', content: 'Task 6' }]
-  },
-  {
-    id: 'col-3',
-    title: 'Done',
-    cards: [{ id: 'c-7', content: 'Task 7' }]
-  }
-]
-
-
+import { ColumnType, CardType } from "todoCardSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "store";
+import { useDispatch } from "react-redux";
+import { setCard, setColumn } from "todoCardSlice";
 
 
 
 const TodoCardList: React.FC = () => {
 
-  const [columns, setColumns] = useState<ColumnType[]>(initialColumns)
+  const myColumns = useSelector((state: RootState) => {
+    return state.todo
+  })
+
+  const [columns, setColumns] = useState<ColumnType[]>(myColumns.columns)
+
 
 
   const onDragEnd = (result: any) => {
@@ -73,7 +48,7 @@ const TodoCardList: React.FC = () => {
 
       setColumns(columns.map(column => column.id === newColumn.id ? newColumn : column))
     } else {
-    
+
       const newDestinationCards: CardType[] = Array.from(destinationColumn.cards || []);
       newDestinationCards.splice(destination.index, 0, removedCard);
 
@@ -96,60 +71,108 @@ const TodoCardList: React.FC = () => {
       }))
     }
   }
-  const arr:number[] = [8, 9]
+
+  const dispatch = useDispatch()
+
+  const handleChange = () => {
+    const id = "col" + Math.floor(Math.random() * 10000)
+
+    const newColumn = {
+      id,
+      title: "Todo",
+      cards: []
+    }
+    dispatch(setColumn(newColumn))
 
 
-  return (
+  }
+
+
+  const handleAddTask = (columnId: string) => {
+
+    const cards = { id: "2", content: "" }
+    dispatch(setCard({ columnId, card: cards }))
+  }
+
+
+
+
+  return (<div>
+
 
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="5">
         {
           (provided) => (
-            <div ref={provided.innerRef}
+            <div
+              ref={provided.innerRef}
               {...provided.droppableProps}
               className={styles.mainDiv}>
-              {arr.map((item,index):ReactNode => {
+
+              {myColumns.columns.map((item, index): ReactNode => {
                 return (
-                <Draggable draggableId={String(item)} index={index}>
-                  {
-                    (provided) => {
-                      return (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}>
-                          <li className={styles.todoCard}>
-                            <div className={styles.todo}>
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {
+                      (provided) => {
+                        return (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}>
+                            <li className={styles.todoCard}>
+                              <div className={styles.todo}>
 
-                              <div className={styles.title}>
+                                <div className={styles.title}>
+                                  <h2> {item.title} </h2>
+                                  <button> <FaRegSun /></button>
+                                </div>
 
-                                <h2> {item} title</h2>
-                                <button> <FaRegSun /></button>
+                                <Droppable droppableId="5">
+                                  {(provided) => (
+                                    <div ref={provided.innerRef} {...provided.droppableProps} className={styles.mainDiv}>
+                                      <ol className={styles.list}>
+                                        {item.cards.map((card, index): ReactNode => {
+                                          return (
+                                            <li key={index}>
+                                              <span> {card.content}</span>
+                                              <button> <FaPen /> </button>
+                                            </li>
+                                          );
+                                        })}
+
+
+                                      </ol>
+                                    </div>
+                                  )}
+                                </Droppable>
 
                               </div>
-                            </div>
 
-                            <div className={styles.addBtn}>
-                              <button> <FaPlus />  <span>Add Card</span></button>
-                              <button><FaCanadianMapleLeaf /> </button>
-                            </div>
-                          </li>
-                        </div>
-                      )
+                              <div className={styles.addBtn}>
+                                <button onClick={() => { handleAddTask(item.id) }}> <FaPlus /> <span>Add Card</span></button>
+                                <button><FaCanadianMapleLeaf /> </button>
+                              </div>
+                            </li>
+                          </div>
+                        )
+                      }
                     }
-                  }
 
-                </Draggable>)
+                  </Draggable>)
               })
 
               }
-             
+
             </div>
           )
         }
 
       </Droppable>
+
     </DragDropContext >
+
+    <button onClick={handleChange}> Click me</button>
+  </div>
   )
 }
 
@@ -159,19 +182,5 @@ export default TodoCardList
 
 
 
-// <ol className={styles.list}>
-//     <li>
-//         <span> Todo</span>
-//         <button><FaPen /> </button>
-//     </li>
-//     <li>
-//         <span> Todo</span>
-//         <button><FaPen /> </button>
-//     </li>
 
-//     <li>
-//         <span> Todo</span>
-//         <button> <FaPen /></button>
-//     </li>
-// </ol>
 

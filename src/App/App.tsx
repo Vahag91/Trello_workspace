@@ -51,8 +51,8 @@ const App: React.FC = () => {
         <BrowserRouter>
             <div>
                 <Suspense fallback={<Loading />}>
-                    {isLogged ? (
-                        <>
+                    {/* {isLogged ? (
+                        <> */}
                             <Header />
                             <Routes>
                                 <Route path="/board" element={<BoardPage />} />
@@ -60,12 +60,12 @@ const App: React.FC = () => {
                                 <Route path="/workspace" element={<WorkspacePage />} />
                                 <Route path="/" element={<WelcomePage />} />
                             </Routes>
-                        </>
+                        {/* </>
                     ) : (
                         <Routes>
                             <Route path="/" element={< RegistrationPage />} />
                         </Routes>
-                    )}
+                    )} */}
                 </Suspense>
             </div>
         </BrowserRouter>
