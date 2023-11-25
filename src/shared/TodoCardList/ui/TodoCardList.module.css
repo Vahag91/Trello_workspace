@@ -1,0 +1,93 @@
+.mainDiv{
+    display: flex;
+}
+
+.todoCard {
+    /* display: flex;
+    justify-content: space-between; */
+    max-width: 240px;
+    list-style: none;
+    background-color: #101204;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.todo {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.title h2 {
+    width: 200px;
+    margin: 0;
+    color: #A4AFBB
+}
+
+.title button {
+    padding: 5px 10px;
+    background-color: #101204;
+    color: #A4AFBB;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+}
+
+.list li {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+    padding: 5px;
+    background-color: #22272B;
+    color: #A4AFBB;
+    border-radius: 5px;
+}
+
+.list button {
+    background-color: #22272B;
+    color: #A4AFBB;
+    border: none;
+}
+
+.addBtn {
+    display: flex;
+    justify-content: space-between;
+}
+
+.addBtn button:first-child {
+    width: 200px;
+    display: flex;
+
+}
+
+.addBtn button span {
+    margin-left: 10px;
+
+}
+
+.addBtn button {
+    background-color: #101204;
+    color: #A4AFBB;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+
+.addBtn button:hover,
+.title h2:hover,
+.title button:hover {
+    background-color: #22272B;
+}
