@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'store';
 import { Boards, setBoard } from 'boardSlice';
 import { useDispatch } from 'react-redux';
-
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -22,14 +22,14 @@ const Board: React.FC = () => {
     })
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
-    console.log(myBoard);
+
 
     const hanldeNewBoard = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const addedBoard: string = event.target.value.trim()
         if (addedBoard !== "") { setNewBoard(addedBoard) }
     }
-
 
 
     const handleChangeInput = (): void => {
@@ -40,9 +40,13 @@ const Board: React.FC = () => {
         setIsBoardOpen(!isBoardOpen)
     }
 
-    const handleChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeTitle = (event: React.ChangeEvent<HTMLInputElement>):void => {
         const newTitle: string = event.target.value
         setTitle(newTitle)
+    }
+
+    const handleNavigate = ():void => {
+        navigate('/workspace')
     }
 
     return (
@@ -80,7 +84,8 @@ const Board: React.FC = () => {
                                 return (
                                     <li key={index}>
                                         <button style={{ backgroundColor: item.color }}
-                                            className={styles.boardBodyButton}>
+                                            className={styles.boardBodyButton}
+                                            onClick={handleNavigate}>
                                             <span>{item.name}</span>
                                         </button>
                                     </li>

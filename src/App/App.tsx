@@ -14,7 +14,7 @@ import Loading from "features/Loading"
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'))
 const WorkspacePage = lazy(() => import('pages/WorkspacePage'))
 const UserPage = lazy(() => import('pages/UserPage'))
-const BoardPage = lazy(() => import('pages/UserPage'))
+const BoardPage = lazy(() => import('pages/BoardPage'))
 
 
 
@@ -50,7 +50,7 @@ const App: React.FC = () => {
         <BrowserRouter>
             <div>
                 <Suspense fallback={<Loading />}>
-                    {isLogged ? (
+                    {/* {isLogged ? ( */}
                         <>
                             <Header />
                             <Routes>
@@ -60,11 +60,11 @@ const App: React.FC = () => {
                                 <Route path="/" element={<BoardPage />} />
                             </Routes>
                         </>
-                     ) : (
+                     {/* ) : (
                          <Routes>
                              <Route path="/" element={< RegistrationPage />} />
                          </Routes>
-                     )}
+                     )} */}
                 </Suspense>
             </div>
         </BrowserRouter>

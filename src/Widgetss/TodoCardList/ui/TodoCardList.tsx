@@ -3,7 +3,6 @@ import React, { ReactNode, useState } from "react"
 import styles from './TodoCardList.module.css'
 import { FaRegSun, FaPen, FaPlus, FaCanadianMapleLeaf } from "react-icons/fa6"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { ColumnType, CardType } from "todoCardSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "store";
 import { useDispatch } from "react-redux";
@@ -13,15 +12,17 @@ import { setCard, setColumn } from "todoCardSlice";
 
 const TodoCardList: React.FC = () => {
 
+  const [taskContent, setTaskContent] = useState<string>("")
+  const [isTaskCardOpen, setIsTaskCardOpen] = useState<boolean>(false)
+
   const myColumns = useSelector((state: RootState) => {
     return state.todo
   })
 
-  const [columns, setColumns] = useState<ColumnType[]>(myColumns.columns)
 
-const onDragEnd = ()=>{
+  const onDragEnd = () => {
 
-}
+  }
 
 
 
@@ -41,12 +42,20 @@ const onDragEnd = ()=>{
   }
 
 
-  const handleAddTask = (columnId: string) => {
-
-    const cards = { id: "2", content: "" }
+  const handleAddTask = (columnId: string, newContent: string): void => {
+    if (newContent === "") {
+      setIsTaskCardOpen(false)
+      return
+    }
+    const cards = { id: "2", content: newContent }
+    setIsTaskCardOpen(false)
     dispatch(setCard({ columnId, card: cards }))
+    setTaskContent("")
   }
 
+  const handleEditTask = () => {
+    setIsTaskCardOpen(true)
+  }
 
 
 
@@ -103,8 +112,23 @@ const onDragEnd = ()=>{
                                 </div>
 
                                 <div className={styles.addBtn}>
-                                  <button onClick={() => { handleAddTask(item.id) }}> <FaPlus /> <span>Add Card</span></button>
-                                  <button><FaCanadianMapleLeaf /> </button>
+                                  {isTaskCardOpen ? (
+                                    <div className={styles.addBtnInput}>
+                                      <input
+                                        type="text"
+                                        name="tast"
+                                        id="tast"
+                                        value={taskContent}
+                                        onChange={(event) => setTaskContent(event.target.value)} />
+                                      <button onClick={() => { handleAddTask(item.id, taskContent) }}>Save</button>
+                                    </div>
+                                  ) : (
+                                    <>
+                                      <button onClick={handleEditTask}> <FaPlus /> <span>Add Card</span></button>
+                                      <button><FaCanadianMapleLeaf /> </button>
+                                    </>
+                                  )}
+
                                 </div>
                               </li>
                             </div>
@@ -125,7 +149,9 @@ const onDragEnd = ()=>{
 
       </DragDropContext >
 
-      <button className={styles.addCardBtn} onClick={handleChange}> <span><FaPlus/> Add Card</span></button>
+      <button className={styles.addCardBtn} onClick={handleChange}> <span><FaPlus /> Add Card</span></button>
+
+
     </div>
   )
 }
