@@ -51,7 +51,7 @@ const App: React.FC = () => {
         <BrowserRouter>
             <div>
                 <Suspense fallback={<Loading />}>
-                    {/* {isLogged ? ( */}
+                    {isLogged ? (
                         <>
                             <Header />
                             <Routes>
@@ -61,11 +61,11 @@ const App: React.FC = () => {
                                 <Route path="/" element={<BoardPage />} />
                             </Routes>
                         </>
-                    {/* // ) : (
-                    //     <Routes>
-                    //         <Route path="/" element={< RegistrationPage />} />
-                    //     </Routes>
-                    // )} */}
+                     ) : (
+                         <Routes>
+                             <Route path="/" element={< RegistrationPage />} />
+                         </Routes>
+                     )}
                 </Suspense>
             </div>
         </BrowserRouter>
