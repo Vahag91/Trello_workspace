@@ -31,21 +31,31 @@ const Board: React.FC = () => {
         if (addedBoard !== "") { setNewBoard(addedBoard) }
     }
 
+    const getRandomColor = (): string => {
+
+        const randomNumber = () => Math.floor(Math.random() * 256);
+        const red = randomNumber();
+        const green = randomNumber();
+        const blue = randomNumber();
+
+        return `rgb(${red}, ${green}, ${blue})`;
+    };
 
     const handleChangeInput = (): void => {
+        const randomColor = getRandomColor()
         if (newBoard) {
-            dispatch(setBoard({ name: newBoard, color: "#009AAE" }));
+            dispatch(setBoard({ name: newBoard, color: randomColor }));
         }
         setNewBoard("")
         setIsBoardOpen(!isBoardOpen)
     }
 
-    const handleChangeTitle = (event: React.ChangeEvent<HTMLInputElement>):void => {
+    const handleChangeTitle = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const newTitle: string = event.target.value
         setTitle(newTitle)
     }
 
-    const handleNavigate = ():void => {
+    const handleNavigate = (): void => {
         navigate('/workspace')
     }
 
@@ -67,7 +77,11 @@ const Board: React.FC = () => {
                             onChange={handleChangeTitle} />) : (
                             <h2> {title}</h2>)}
 
-                    <button className={styles.boadHeaderbtn} onClick={() => { setIsTitleOpen(!isTitleOpen) }}><span> <FaPen /></span> </button>
+                    <button
+                        className={styles.boadHeaderbtn}
+                        onClick={() => { setIsTitleOpen(!isTitleOpen) }}>
+                        <span> <FaPen /></span>
+                    </button>
                 </div>
 
             </div>
