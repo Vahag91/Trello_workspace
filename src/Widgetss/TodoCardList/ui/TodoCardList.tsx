@@ -19,58 +19,11 @@ const TodoCardList: React.FC = () => {
 
   const [columns, setColumns] = useState<ColumnType[]>(myColumns.columns)
 
+const onDragEnd = ()=>{
+
+}
 
 
-  const onDragEnd = (result: any) => {
-    const { source, destination, draggableId } = result;
-
-    if (!destination) {
-      return;
-    }
-
-    if (source.droppableId === destination.droppableId && source.index === destination.index) {
-      return;
-    }
-
-    const sourceColumn: ColumnType = columns.find((column) => column.id === source.droppableId) as ColumnType;
-    const destinationColumn: ColumnType = columns.find((column) => column.id === destination.droppableId) as ColumnType;
-
-    const newSourceCards: CardType[] = Array.from(sourceColumn?.cards || []);
-    const [removedCard] = newSourceCards.splice(source.index, 1);
-
-    if (source.droppableId === destination.droppableId) {
-      newSourceCards.splice(destination.index, 0, removedCard);
-
-      const newColumn: ColumnType = {
-        ...sourceColumn,
-        cards: newSourceCards,
-      };
-
-      setColumns(columns.map(column => column.id === newColumn.id ? newColumn : column))
-    } else {
-
-      const newDestinationCards: CardType[] = Array.from(destinationColumn.cards || []);
-      newDestinationCards.splice(destination.index, 0, removedCard);
-
-
-      const newSourceColumn: ColumnType = {
-        ...sourceColumn,
-        cards: newSourceCards
-      }
-
-      const newDestinationColumn: ColumnType = {
-        ...destinationColumn,
-        cards: newDestinationCards
-      }
-
-
-      setColumns(columns.map(column => {
-        if (column.id === newSourceColumn.id) return newSourceColumn;
-        if (column.id === newDestinationColumn.id) return newDestinationColumn;
-        return column
-      }))
-    }
-  }
 
   const dispatch = useDispatch()
 

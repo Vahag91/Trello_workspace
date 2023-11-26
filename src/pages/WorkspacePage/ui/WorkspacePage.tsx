@@ -1,6 +1,6 @@
 import React from "react";
 import SideBar from "widgetss/SideBar";
-import TodoCardList from "shared/TodoCardList";
+import TodoCardList from "widgetss/TodoCardList";
 import styles from './WorkspacePage.module.css'
 import { setColumn } from "todoCardSlice";
 import { useDispatch } from "react-redux";

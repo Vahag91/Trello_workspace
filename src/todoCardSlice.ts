@@ -39,8 +39,6 @@ const todoSlice = createSlice({
         },
         setCard: (state, action: PayloadAction<{ columnId: string; card: CardType }>) => {
             const { columnId, card } = action.payload;
-
-
             const columnIndex = state.columns.findIndex(column => column.id === columnId);
 
             if (columnIndex !== -1) {

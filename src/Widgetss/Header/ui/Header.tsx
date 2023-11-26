@@ -27,11 +27,10 @@ const Header: React.FC = () => {
             <nav className={styles.navBar}>
 
                 <ul className={styles.navList}>
-                    <li> <Link to="#"> <span><FaList /> </span></Link></li>
-                    <li> <Link to="#"> <span><FaClipboardUser /> Trello</span></Link></li>
-                    <li> <Link to="board"> <span>BoardPage</span></Link></li>
-                    <li> <Link to="/user"> <span>User</span></Link></li>
-                    <li> <Link to="/workspace"> <span>Workspace</span></Link></li>
+                    <li> <Link to="" className={styles.linkStyle}> <span><FaList /> </span></Link></li>
+                    <li> <Link to="board" className={styles.linkStyle}> <span><FaClipboardUser /> Trello</span></Link></li>
+                    <li> <Link to="/user" className={styles.linkStyle}> <span>User</span></Link></li>
+                    <li> <Link to="/workspace" className={styles.linkStyle}> <span>Workspace</span></Link></li>
                         </ul>
 
 

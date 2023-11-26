@@ -23,7 +23,7 @@ const Board: React.FC = () => {
 
     const dispatch = useDispatch()
 
-console.log(myBoard);
+    console.log(myBoard);
 
     const hanldeNewBoard = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const addedBoard: string = event.target.value.trim()
@@ -48,9 +48,7 @@ console.log(myBoard);
     return (
 
         <div className={styles.mainBoard}>
-
             <div className={styles.boardHeader}>
-
                 <div className={styles.boardHeaderTitle}>
                     <h2> T </h2>
                 </div>
@@ -70,20 +68,19 @@ console.log(myBoard);
 
             </div>
 
-           
+
 
             <div className={styles.boardBody}>
-
                 <div className={styles.board}>
                     <h2> <FaClipboardUser />  Your Boards</h2>
 
                     <div className={styles.boardList}>
                         <ul>
-                            {myBoard.map((item: Boards) => {
+                            {myBoard.map((item: Boards, index: number) => {
                                 return (
-                                    <li>
-                                        <button style ={{ backgroundColor: item.color }}
-                                        className={styles.boardBodyButton}>
+                                    <li key={index}>
+                                        <button style={{ backgroundColor: item.color }}
+                                            className={styles.boardBodyButton}>
                                             <span>{item.name}</span>
                                         </button>
                                     </li>
@@ -103,7 +100,7 @@ console.log(myBoard);
                                 </div>
                             ) : (
                                 <button className={styles.addBoardBtn} onClick={handleChangeInput} >
-                                  <span className={styles.boardAddBtn}> Create New Board</span>  
+                                    <span className={styles.boardAddBtn}> Create New Board</span>
                                 </button>
                             )}
                         </ul>

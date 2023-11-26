@@ -63,6 +63,14 @@ header span {
     border-radius: 50%;
 }
 
+.linkStyle {
+    padding: 5px;
+    margin: 5px;
+    height: 25px;
+    width: 25px;
+}
+
+
 .navIcons li span {
    padding: 4px;
 }

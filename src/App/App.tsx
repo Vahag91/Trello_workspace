@@ -6,8 +6,7 @@ import { setEmail, setUsername, setUserPhotoUrl } from "userSlice"
 import { useSelector,useDispatch } from "react-redux"
 import { RootState } from "store"
 
-import BoardPage from "pages/BoardPage"
-import WelcomePage from "pages/WelcomePage"
+
 import Header from "widgetss/Header"
 import Loading from "features/Loading"
 
@@ -15,7 +14,7 @@ import Loading from "features/Loading"
 const RegistrationPage = lazy(() => import('pages/RegistrationPage'))
 const WorkspacePage = lazy(() => import('pages/WorkspacePage'))
 const UserPage = lazy(() => import('pages/UserPage'))
-
+const BoardPage = lazy(() => import('pages/UserPage'))
 
 
 
