@@ -51,21 +51,21 @@ const App: React.FC = () => {
         <BrowserRouter>
             <div>
                 <Suspense fallback={<Loading />}>
-                    {/* {isLogged ? (
-                        <> */}
+                    {/* {isLogged ? ( */}
+                        <>
                             <Header />
                             <Routes>
                                 <Route path="/board" element={<BoardPage />} />
                                 <Route path="/user" element={<UserPage />} />
                                 <Route path="/workspace" element={<WorkspacePage />} />
-                                <Route path="/" element={<WelcomePage />} />
+                                <Route path="/" element={<BoardPage />} />
                             </Routes>
-                        {/* </>
-                    ) : (
-                        <Routes>
-                            <Route path="/" element={< RegistrationPage />} />
-                        </Routes>
-                    )} */}
+                        </>
+                    {/* // ) : (
+                    //     <Routes>
+                    //         <Route path="/" element={< RegistrationPage />} />
+                    //     </Routes>
+                    // )} */}
                 </Suspense>
             </div>
         </BrowserRouter>

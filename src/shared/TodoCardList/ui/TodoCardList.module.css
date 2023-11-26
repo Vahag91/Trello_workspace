@@ -1,9 +1,15 @@
-.mainDiv{
+.mainBoard {
+    display: flex;
+    align-items: start;
+}
+
+
+.mainDiv {
     display: flex;
 }
 
 .todoCard {
- 
+
     max-width: 240px;
     list-style: none;
     background-color: #101204;
@@ -55,18 +61,19 @@
     border-radius: 5px;
 }
 
-.list li:hover{
+.list li:hover {
     filter: brightness(120%);
 }
+
 .list button {
     background-color: #22272B;
     color: #A4AFBB;
     border: none;
     cursor: pointer;
-   padding: 5px 10px;
+    padding: 5px 10px;
 }
 
-.list button:hover{
+.list button:hover {
     background-color: #373f45;
 }
 
@@ -100,4 +107,23 @@
 .title h2:hover,
 .title button:hover {
     background-color: #22272B;
+}
+
+
+.addCardBtn {
+    width: 240px;
+    height: 50px;
+    background-color:rgba(242, 248, 248, 0.5);
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.addCardBtn:hover {
+    background-color:rgba(243, 249, 249, 0.9);
 }

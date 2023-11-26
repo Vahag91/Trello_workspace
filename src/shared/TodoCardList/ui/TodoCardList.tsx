@@ -97,82 +97,83 @@ const TodoCardList: React.FC = () => {
 
 
 
-  return (<div>
+  return (
+    <div className={styles.mainBoard}>
 
 
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId="5">
-        {
-          (provided) => (
-            <div
-              ref={provided.innerRef}
-              {...provided.droppableProps}
-              className={styles.mainDiv}>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="5">
+          {
+            (provided) => (
+              <div
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+                className={styles.mainDiv}>
 
-              {myColumns.columns.map((item, index): ReactNode => {
-                return (
-                  <Draggable key={item.id} draggableId={item.id} index={index}>
-                    {
-                      (provided) => {
-                        return (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}>
-                            <li className={styles.todoCard}>
-                              <div className={styles.todo}>
+                {myColumns.columns.map((item, index): ReactNode => {
+                  return (
+                    <Draggable key={item.id} draggableId={item.id} index={index}>
+                      {
+                        (provided) => {
+                          return (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}>
+                              <li className={styles.todoCard}>
+                                <div className={styles.todo}>
 
-                                <div className={styles.title}>
-                                  <h2> {item.title} </h2>
-                                  <button> <FaRegSun /></button>
+                                  <div className={styles.title}>
+                                    <h2> {item.title} </h2>
+                                    <button> <FaRegSun /></button>
+                                  </div>
+
+                                  <Droppable droppableId="5">
+                                    {(provided) => (
+                                      <div ref={provided.innerRef} {...provided.droppableProps} className={styles.mainDiv}>
+                                        <ol className={styles.list}>
+                                          {item.cards.map((card, index): ReactNode => {
+                                            return (
+                                              <li key={index}>
+                                                <span> {card.content}</span>
+                                                <button> <FaPen /> </button>
+                                              </li>
+                                            );
+                                          })}
+
+
+                                        </ol>
+                                      </div>
+                                    )}
+                                  </Droppable>
+
                                 </div>
 
-                                <Droppable droppableId="5">
-                                  {(provided) => (
-                                    <div ref={provided.innerRef} {...provided.droppableProps} className={styles.mainDiv}>
-                                      <ol className={styles.list}>
-                                        {item.cards.map((card, index): ReactNode => {
-                                          return (
-                                            <li key={index}>
-                                              <span> {card.content}</span>
-                                              <button> <FaPen /> </button>
-                                            </li>
-                                          );
-                                        })}
-
-
-                                      </ol>
-                                    </div>
-                                  )}
-                                </Droppable>
-
-                              </div>
-
-                              <div className={styles.addBtn}>
-                                <button onClick={() => { handleAddTask(item.id) }}> <FaPlus /> <span>Add Card</span></button>
-                                <button><FaCanadianMapleLeaf /> </button>
-                              </div>
-                            </li>
-                          </div>
-                        )
+                                <div className={styles.addBtn}>
+                                  <button onClick={() => { handleAddTask(item.id) }}> <FaPlus /> <span>Add Card</span></button>
+                                  <button><FaCanadianMapleLeaf /> </button>
+                                </div>
+                              </li>
+                            </div>
+                          )
+                        }
                       }
-                    }
 
-                  </Draggable>)
-              })
+                    </Draggable>)
+                })
 
-              }
+                }
 
-            </div>
-          )
-        }
+              </div>
+            )
+          }
 
-      </Droppable>
+        </Droppable>
 
-    </DragDropContext >
+      </DragDropContext >
 
-    <button onClick={handleChange}> Click me</button>
-  </div>
+      <button className={styles.addCardBtn} onClick={handleChange}> <span><FaPlus/> Add Card</span></button>
+    </div>
   )
 }
 
